@@ -1,2 +1,2 @@
-# B21-CAP0001
-Repository for Bangkit Capstone Project
+# B21-CAP0001 (Cloud)
+Hoax & hate speech game [backend]
