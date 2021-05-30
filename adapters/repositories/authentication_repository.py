@@ -47,13 +47,11 @@ class AuthenticationRepository:
       try:
         newUser = User(email, username, password)
         newUser.save()
-
-        auth_token = newUser.encode_auth_token(newUser.id)
         result = {
           'status': 'success',
           'code': 201,
           'message': 'Successfully registered.',
-          'auth_token': auth_token.decode(),
+          'auth_token': None,
           'data': {},
         }
 
@@ -62,7 +60,7 @@ class AuthenticationRepository:
         result = {
           'status': 'fail',
           'code': 401,
-          'message': 'Some error occurred. Please try again.',
+          'message': 'Some error occurred. Please try again. ({})'.format(e),
           'auth_token': None,
           'data': {},
         }
