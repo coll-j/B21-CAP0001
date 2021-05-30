@@ -1,3 +1,4 @@
+
 POSTGRES_URL = '127.0.0.1:5433'
 POSTGRES_USER = 'postgres'
 POSTGRES_PASSWORD = 'mostsecurepassword'
@@ -6,9 +7,8 @@ POSTGRES_DB = 'bluesclues'
 
 class Config:
     """Base configuration."""
-    DEBUG = False
+    DEBUG = True
     TESTING = False
-
     # SQLAlchemy
     uri_template = 'postgresql+psycopg2://{user}:{pw}@{url}/{db}'
     SQLALCHEMY_DATABASE_URI = uri_template.format(user=POSTGRES_USER,
@@ -40,7 +40,7 @@ def get_config(env=None):
         # except Exception:
     env = 'development'
             # print('env is not set, using env:', env)
-
+        
     if env == 'production':
         return ProductionConfig()
     elif env == 'test':
