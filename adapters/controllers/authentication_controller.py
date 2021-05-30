@@ -21,13 +21,8 @@ def register():
   if request.method == "POST":
     data = request.get_json()
     result = AuthenticationRepository.register(data["email"], data["username"], data["password"])
-    
-    if(result["code"] == 401):
-      return make_response(jsonify(result)), 401
-    elif(result["code"] == 202):
-      return make_response(jsonify(result)), 202
-    elif(result["code"] == 201):
-      return make_response(jsonify(result)), 201
+
+    return make_response(jsonify(result)), result["code"]
 
 
 
@@ -37,9 +32,4 @@ def logout():
     auth_header = request.headers.get('Authorization')
     result = AuthenticationRepository.logout(auth_header)
 
-    if(result["code"] == 401):
-      return make_response(jsonify(result)), 401
-    elif(result["code"] == 200):
-      return make_response(jsonify(result)), 200
-    elif(result["code"] == 403):
-      return make_response(jsonify(result)), 403
+    return make_response(jsonify(result)), result["code"]
