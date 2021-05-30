@@ -9,13 +9,8 @@ def login():
     data = request.get_json()
     result = AuthenticationRepository.login(data['username'])
     
-    if(result["code"] == 401):
-      return make_response(jsonify(result)), 401
-    elif(result["code"] == 200):
-      return make_response(jsonify(result)), 200
-    elif(result["code"] == 500):
-      return make_response(jsonify(result)), 500
-
+    return make_response(jsonify(result)), result["code"]
+    
 @authentication.route('/register', methods=["POST"])
 def register():
   if request.method == "POST":
