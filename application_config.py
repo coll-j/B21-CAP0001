@@ -5,6 +5,7 @@ from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 
 from adapters.controllers.authentication_controller import authentication
+from adapters.controllers.feedback_controller import feedback
 
 config = {"production": "config.ProdConfig", "development": "config.DevConfig", "test": "config.TestConfig"}
 db = SQLAlchemy()
@@ -18,6 +19,7 @@ def create_app() -> Flask:
   bcrypt.init_app(app)
   
   app.register_blueprint(authentication)
+  app.register_blueprint(feedback)
 
   CORS(app)
 

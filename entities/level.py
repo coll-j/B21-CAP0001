@@ -12,5 +12,7 @@ class Level(db.Model, BaseModel):
     branch = db.Column(db.Integer, nullable=False)
     public_link = db.Column(db.Text, nullable=False)
 
-    def __init__(self):
-        pass
+    def __init__(self, level, branch, public_link):
+      self.level = level
+      self.branch = branch
+      self.public_link = public_link

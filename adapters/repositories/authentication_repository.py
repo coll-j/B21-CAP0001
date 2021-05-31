@@ -86,7 +86,7 @@ class AuthenticationRepository:
         resp = User.decode_auth_token(auth_token)
         if not isinstance(resp, str):
             # mark the token as blacklisted
-            blacklist_token = BlacklistToken(token=auth_token)
+            blacklist_token = BlacklistToken(auth_token)
             try:
                 blacklist_token.save()
                 result = {
@@ -101,12 +101,13 @@ class AuthenticationRepository:
                 result = {
                     'status': 'fail',
                     'code': 200,
-                    'message': e,
+                    'message': str(e),
                     'auth_token': None,
                     'data': {}
                 }
                 return result
         else:
+            print("sini")
             result = {
                 'status': 'fail',
                 'code': 401,

@@ -12,5 +12,7 @@ class Feedback(db.Model, BaseModel):
     response = db.Column(db.Integer, nullable=False)
     text_feedback = db.Column(db.Text, nullable=False)
 
-    def __init__(self):
-        pass
+    def __init__(self, level_id, response, text_feedback):
+        self.level_id = level_id
+        self.response = response
+        self.text_feedback = text_feedback
