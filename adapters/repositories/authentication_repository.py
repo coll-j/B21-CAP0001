@@ -1,6 +1,7 @@
 from entities.blacklisted_tokens import BlacklistToken
 from flask.json import jsonify
 from entities.user import User
+from adapters.helpers.token import Token
 
 class AuthenticationRepository:
   @staticmethod
@@ -22,13 +23,13 @@ class AuthenticationRepository:
             'status': 'success',
             'code': 200,
             'message': 'Successfully logged in.',
-            'auth_token': auth_token.decode(),
+            'auth_token': auth_token,
             'data': {
               'email': user.email,
               'username': user.username
             },
         }
-        
+
       else:
         result = {
           'status': 'fail',
@@ -37,7 +38,7 @@ class AuthenticationRepository:
           'auth_token': None,
           'data': {},
         }
-    
+
     return result
 
   @staticmethod
@@ -78,12 +79,9 @@ class AuthenticationRepository:
 
   @staticmethod
   def logout(auth_header):
-    if auth_header:
-        auth_token = auth_header.split(" ")[1]
-    else:
-        auth_token = ''
+    resp, auth_token = Token.get_token_and_user(auth_header=auth_header)
+    print(resp, auth_token)
     if auth_token:
-        resp = User.decode_auth_token(auth_token)
         if not isinstance(resp, str):
             # mark the token as blacklisted
             blacklist_token = BlacklistToken(token=auth_token)
@@ -118,7 +116,7 @@ class AuthenticationRepository:
     else:
         result = {
             'status': 'fail',
-            'status': 403,
+            'code': 403,
             'message': 'Provide a valid auth token.',
             'auth_token': None,
             'data': {}
