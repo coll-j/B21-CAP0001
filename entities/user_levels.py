@@ -11,5 +11,6 @@ class UserLevels(db.Model, BaseModel):
     user_id = db.Column(db.Integer, nullable=False)
     level_id = db.Column(db.Integer, nullable=False)
 
-    def __init__(self):
-        pass
+    def __init__(self, user_id, level_id):
+      self.user_id = user_id
+      self.level_id = level_id

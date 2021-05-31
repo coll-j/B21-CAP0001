@@ -1,7 +1,6 @@
 from flask_bcrypt import Bcrypt
 from .abc import BaseModel
 from flask_sqlalchemy import SQLAlchemy
-import jwt
 import datetime
 
 db = SQLAlchemy()
@@ -13,7 +12,7 @@ class BlacklistToken(db.Model, BaseModel):
     """
     __tablename__ = 'blacklist_tokens'
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True, unique=True, nullable=False)
     token = db.Column(db.String, unique=True, nullable=False)
     blacklisted_on = db.Column(db.DateTime, nullable=False)
 
