@@ -79,8 +79,6 @@ Response:
 }
 ```
 
-## Pengguna dapat mengakses level-level yang telah dan sedang dibuka untuk user tersebut
-
 ### Showing Opened Level for a User
 
 Request:
@@ -103,6 +101,35 @@ Response:
                 "id": "integer",
                 "level": "integer",
                 "public_link": "string"
+            }
+        ]
+    },
+    "message": "string",
+    "status": "string"
+}
+```
+
+### Showing badge that user have achieved
+Request:
+- Method: GET
+- Endpoint: `/badge/`
+- Header:
+    - Content-Type: application/json
+    - Accept: application/json
+    - Authorization: Bearer Token
+
+Response:
+```json
+{
+    "auth_token": "string",
+    "code": "integer",
+    "data": {
+        "badges": [
+            {
+                "description": "string",
+                "gambar": "string",
+                "id": "integer",
+                "title": "string"
             }
         ]
     },
