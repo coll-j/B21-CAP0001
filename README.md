@@ -109,6 +109,49 @@ Response:
 }
 ```
 
+### Get Level Details
+
+Request:
+- Method: GET
+- Endpoint: `/level/{level_id}`
+- Header:
+    - Content-Type: application/json
+    - Accept: application/json
+    - Authorization: Bearer Token
+
+Response:
+```json
+{
+    "auth_token": "string",
+    "code": "integer",
+    "data": {
+        "answer_choices": [
+            {
+                "id": "integer",
+                "mapping_level_id": "integer",
+                "question_id": "integer",
+                "text": "string"
+            },
+        ],
+        "facts": [
+            {
+                "id": "integer",
+                "question_id": "integer",
+                "text": "string"
+            },
+        ],
+        "question": {
+            "id": "integer",
+            "is_multiple_choices": "boolean",
+            "level_id": "integer",
+            "text": "string"
+        }
+    },
+    "message": "string",
+    "status": "string"
+}
+```
+
 ### Showing badge that user have achieved
 Request:
 - Method: GET
