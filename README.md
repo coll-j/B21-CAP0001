@@ -93,7 +93,6 @@ Request:
 
 Response:
 ```json
-// success
 {
     "auth_token": "string",
     "code": "integer",
