@@ -13,6 +13,8 @@ class Level(db.Model, BaseModel):
     public_link = db.Column(db.Text, nullable=False)
 
     def __init__(self, level, branch, public_link):
-      self.level = level
-      self.branch = branch
-      self.public_link = public_link
+        self.level = level
+        self.branch = branch
+        self.public_link = public_link
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}

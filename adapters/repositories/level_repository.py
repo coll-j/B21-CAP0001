@@ -1,53 +1,32 @@
-from entities.blacklisted_tokens import BlacklistToken
 from flask.json import jsonify
-from entities.user import User
+from entities.user_levels import UserLevels
+from entities.level import Level
+from adapters.helpers.token import Token
+from adapters.helpers.session import session
+from flask import jsonify
 
 class LevelRepository:
-  @staticmethod
-  def levels(auth_header):
-    if auth_header:
-        auth_token = auth_header.split(" ")[1]
-    else:
-        auth_token = ''
-    if auth_token:
-        resp = User.decode_auth_token(auth_token)
-        if not isinstance(resp, str):
-            # mark the token as blacklisted
-            blacklist_token = BlacklistToken(token=auth_token)
-            try:
-                blacklist_token.save()
-                result = {
-                    'status': 'success',
-                    'code': 200,
-                    'message': 'Successfully logged out.',
-                    'auth_token': None,
-                    'data': {}
-                }
-                return result
-            except Exception as e:
-                result = {
-                    'status': 'fail',
-                    'code': 200,
-                    'message': e,
-                    'auth_token': None,
-                    'data': {}
-                }
-                return result
-        else:
-            result = {
-                'status': 'fail',
-                'code': 401,
-                'message': resp,
-                'auth_token': None,
-                'data': {}
+    @staticmethod
+    def levels(auth_header):
+        user_id, auth_token, result = Token.get_token_and_user(auth_header=auth_header)
+        if user_id:
+            levels = []
+            levels_temp = session.query(
+                Level
+            ).filter(
+                UserLevels.level_id == Level.id
+            ).filter(
+                UserLevels.user_id == user_id
+            ).all()
+
+            for level in levels_temp:
+                levels.append(level.as_dict())
+
+            result["message"] = 'success'
+            result["data"] = {
+                'levels': levels
             }
+
             return result
-    else:
-        result = {
-            'status': 'fail',
-            'status': 403,
-            'message': 'Provide a valid auth token.',
-            'auth_token': None,
-            'data': {}
-        }
-        return result
+        else:
+            return result

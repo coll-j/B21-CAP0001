@@ -7,6 +7,7 @@ import datetime
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
+SECRET_KEY="THUMBSGENGS"
 
 
 class User(db.Model, BaseModel):
@@ -35,8 +36,8 @@ class User(db.Model, BaseModel):
             }
             return jwt.encode(
                 payload,
-                "\xa1R}\xfb\xf3W\xdc\x7f\x94\x92\xc2R\xa9\xe4\x81\x0e\xa3\xb0\xf9q\xa4\xf4\xdd\xe3",
-                algorithm='HS256')
+                SECRET_KEY,
+                algorithm="HS256")
         except Exception as e:
             return e
 
@@ -50,7 +51,8 @@ class User(db.Model, BaseModel):
         try:
             payload = jwt.decode(
                 auth_token,
-                "\xa1R}\xfb\xf3W\xdc\x7f\x94\x92\xc2R\xa9\xe4\x81\x0e\xa3\xb0\xf9q\xa4\xf4\xdd\xe3"
+                SECRET_KEY,
+                algorithms=["HS256"]
             )
             is_blacklisted_token = BlacklistToken.check_blacklist(auth_token)
             if is_blacklisted_token:

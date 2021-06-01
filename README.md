@@ -1,7 +1,7 @@
 # B21-CAP0001 (Cloud)
 Hoax & hate speech game [backend]
 
-## AUTHENTIFICATION
+## AUTHENTICATION
 
 ### LOGIN
 Request:
@@ -76,5 +76,38 @@ Response:
   "data": {},
   "message": "string",
   "status": "string"
+}
+```
+
+## Pengguna dapat mengakses level-level yang telah dan sedang dibuka untuk user tersebut
+
+### Showing Opened Level for a User
+
+Request:
+- Method: GET
+- Endpoint: `/level/`
+- Header:
+    - Content-Type: application/json
+    - Accept: application/json
+    - Authorization: Bearer Token
+
+Response:
+```json
+// success
+{
+    "auth_token": "string",
+    "code": "integer",
+    "data": {
+        "levels": [
+            {
+                "branch": "integer",
+                "id": "integer",
+                "level": "integer",
+                "public_link": "string"
+            }
+        ]
+    },
+    "message": "string",
+    "status": "string"
 }
 ```

@@ -79,8 +79,7 @@ class AuthenticationRepository:
 
   @staticmethod
   def logout(auth_header):
-    resp, auth_token = Token.get_token_and_user(auth_header=auth_header)
-    print(resp, auth_token)
+    resp, auth_token, result = Token.get_token_and_user(auth_header=auth_header)
     if auth_token:
         if not isinstance(resp, str):
             # mark the token as blacklisted
@@ -105,7 +104,6 @@ class AuthenticationRepository:
                 }
                 return result
         else:
-            print("sini")
             result = {
                 'status': 'fail',
                 'code': 401,

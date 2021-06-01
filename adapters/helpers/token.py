@@ -1,3 +1,4 @@
+from adapters.repositories.check_token import check_token
 from entities.user import User
 
 class Token:
@@ -5,10 +6,14 @@ class Token:
     def get_token_and_user(auth_header):
         user = None
         token = None
+        result = None
 
         if auth_header:
-            token = auth_header.split(" ")[1]
-            if token:
-                user = User.decode_auth_token(token)
+            result = check_token(auth_header)
 
-        return user, token
+            if result['code'] == 200:
+                token = auth_header.split(" ")[1]
+                if token:
+                    user = User.decode_auth_token(token)
+
+        return user, token, result
