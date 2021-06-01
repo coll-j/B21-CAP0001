@@ -12,5 +12,10 @@ class Badge(db.Model, BaseModel):
     description = db.Column(db.Text, nullable=False)
     gambar = db.Column(db.Text, nullable=False)
 
-    def __init__(self):
-        pass
+    def __init__(self, title, description, gambar):
+        self.title = title
+        self.description = description
+        self.gambar = gambar
+        
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
