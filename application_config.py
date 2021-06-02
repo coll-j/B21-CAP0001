@@ -8,6 +8,7 @@ from adapters.controllers.authentication_controller import authentication
 from adapters.controllers.feedback_controller import feedback
 from adapters.controllers.level_controller import level
 from adapters.controllers.badge_controller import badge
+from adapters.controllers.main_controller import main
 
 config = {"production": "config.ProdConfig", "development": "config.DevConfig", "test": "config.TestConfig"}
 db = SQLAlchemy()
@@ -24,6 +25,7 @@ def create_app() -> Flask:
   app.register_blueprint(feedback)
   app.register_blueprint(level)
   app.register_blueprint(badge)
+  app.register_blueprint(main)
 
   CORS(app)
 
