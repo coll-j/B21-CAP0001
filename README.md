@@ -1,182 +1,40 @@
 # B21-CAP0001 (Cloud)
 Hoax & hate speech game [backend]
 
-## AUTHENTICATION
-
-### LOGIN
-Request:
-- Method: POST
-- Endpoint: `/auth/login`
-- Header:
-    - Content-Type: application/json
-    - Accept: application/json
-- Body:
-```json
-{
-    "email": "string",
-    "password": "string"
-}
+# How to Install & Run (need to enter project first)
+## 1. Install (if not exists) and Create Virtual Environment
+### a. Run command bellow
+```
+python3 -m venv venv
 ```
 
-Response:
-```json
-{
-  "auth_token": "string",
-  "code": "integer",
-  "data": {
-    "email": "string",
-    "username": "string"
-  },
-  "message": "string",
-  "status": "string"
-}
+### b. Activate the environment
+```
+. venv/bin/activate (macOS/linux)
+venv\Scripts\activate (windwos)
 ```
 
-### REGISTER
-Request:
-- Method: POST
-- Endpoint: `/auth/register`
-- Header:
-    - Content-Type: application/json
-    - Accept: application/json
-- Body:
-```json
-{
-    "email": "string",
-    "username": "string",
-    "password": "string"
-}
+<br/>
+
+
+## 2. Install all requirements library
+Using all library using :
+```
+pip install -r requirements.txt
 ```
 
-Response:
-```json
-{
-  "auth_token": "string",
-  "code": "integer",
-  "data": {},
-  "message": "string",
-  "status": "string"
-}
+<br/>
+
+## 3. Run the app
+### a. Export the main.py (or entry that contain run function) into system variable
+```
+export FLASK_APP=hello (Bash)
+set FLASK_APP=hello (CMD)
+$env:FLASK_APP = "hello" (Powershell)
 ```
 
-### LOGOUT [FIXING]
-Request:
-- Method: POST
-- Endpoint: `/auth/logout`
-- Header:
-    - Content-Type: application/json
-    - Accept: application/json
-    - Authorization: Bearer Token
-
-Response:
-```json
-{
-  "auth_token": "string",
-  "code": "integer",
-  "data": {},
-  "message": "string",
-  "status": "string"
-}
+### b. Run and enjoy
 ```
-
-### Showing Opened Level for a User
-
-Request:
-- Method: GET
-- Endpoint: `/level/`
-- Header:
-    - Content-Type: application/json
-    - Accept: application/json
-    - Authorization: Bearer Token
-
-Response:
-```json
-{
-    "auth_token": "string",
-    "code": "integer",
-    "data": {
-        "levels": [
-            {
-                "branch": "integer",
-                "id": "integer",
-                "level": "integer",
-                "public_link": "string"
-            }
-        ]
-    },
-    "message": "string",
-    "status": "string"
-}
-```
-
-### Get Level Details
-
-Request:
-- Method: GET
-- Endpoint: `/level/{level_id}`
-- Header:
-    - Content-Type: application/json
-    - Accept: application/json
-    - Authorization: Bearer Token
-
-Response:
-```json
-{
-    "auth_token": "string",
-    "code": "integer",
-    "data": {
-        "answer_choices": [
-            {
-                "id": "integer",
-                "mapping_level_id": "integer",
-                "question_id": "integer",
-                "text": "string"
-            },
-        ],
-        "facts": [
-            {
-                "id": "integer",
-                "question_id": "integer",
-                "text": "string"
-            },
-        ],
-        "question": {
-            "id": "integer",
-            "is_multiple_choices": "boolean",
-            "level_id": "integer",
-            "text": "string"
-        }
-    },
-    "message": "string",
-    "status": "string"
-}
-```
-
-### Showing badge that user have achieved
-Request:
-- Method: GET
-- Endpoint: `/badge/`
-- Header:
-    - Content-Type: application/json
-    - Accept: application/json
-    - Authorization: Bearer Token
-
-Response:
-```json
-{
-    "auth_token": "string",
-    "code": "integer",
-    "data": {
-        "badges": [
-            {
-                "description": "string",
-                "gambar": "string",
-                "id": "integer",
-                "title": "string"
-            }
-        ]
-    },
-    "message": "string",
-    "status": "string"
-}
+flask run (without debugging) (or)
+python main.py (with debugging)
 ```
