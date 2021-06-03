@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">Thumbs</string>
+
+    <string name="userWa_name">WA Name</string>
+    <string name="userWa_detail">Unseen Message</string>
+    <string name="userWa_time">Time</string>
+
+    <string name="list">List</string>
+
+   <!--data Wa -->
+    <string-array name="data_name">
+        <item>My Lovely Family</item>
+        <item>Dr. Syubban</item>
+        <item>Jek</item>
+        <item>Caca</item>
+        <item>Liiza</item>
+        <item>Yohan</item>
+    </string-array>
+
+    <string-array name="data_detail">
+        <item>Vaksin Jarum tertinggal di kulit</item>
+        <item>Lorem ipsum.......</item>
+        <item>Lorem ipsum.......</item>
+        <item>Lorem ipsum.......</item>
+        <item>Lorem ipsum.......</item>
+        <item>Lorem ipsum.......</item>
+    </string-array>
+
+    <string-array name="data_time">
+        <item>9.41 AM</item>
+        <item>9.41 AM</item>
+        <item>9.41 AM</item>
+        <item>9.41 AM</item>
+        <item>9.41 AM</item>
+        <item>9.41 AM</item>
+    </string-array>
+
+    <string-array name="data_photo">
+        <item>https://runwildmychild.com/wp-content/uploads/2019/11/IMG_9064.jpg</item>
+        <item>https://theindiangent.in/wp-content/uploads/2019/09/66048351_147244253007278_7308157246964096091_n-700x875.jpg</item>
+        <item>https://i.pinimg.com/originals/1b/fa/98/1bfa984b9258012f33dd24f5a8e754e8.jpg</item>
+        <item>https://i.pinimg.com/originals/1b/fa/98/1bfa984b9258012f33dd24f5a8e754e8.jpg</item>
+        <item>https://i.pinimg.com/originals/1b/fa/98/1bfa984b9258012f33dd24f5a8e754e8.jpg</item>
+        <item>https://theindiangent.in/wp-content/uploads/2019/09/66048351_147244253007278_7308157246964096091_n-700x875.jpg</item>
+    </string-array>
+
+</resources>
