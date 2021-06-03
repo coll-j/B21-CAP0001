@@ -1,6 +1,6 @@
-## AUTHENTICATION
+## AUTHENTICATION METHOD
 
-### LOGIN
+### [POST] LOGIN
 Request:
 - Method: POST
 - Endpoint: `/auth/login`
@@ -29,7 +29,7 @@ Response:
 }
 ```
 
-### REGISTER
+### [POST] REGISTER
 Request:
 - Method: POST
 - Endpoint: `/auth/register`
@@ -56,7 +56,7 @@ Response:
 }
 ```
 
-### LOGOUT [FIXING]
+### [POST] LOGOUT
 Request:
 - Method: POST
 - Endpoint: `/auth/logout`
@@ -76,7 +76,14 @@ Response:
 }
 ```
 
-### Showing Opened Level for a User
+<br/>
+
+## IN GAME METHOD
+
+### [GET] LIST LEVEL 
+#### Showing opened (available) Level for a User
+
+<br/>
 
 Request:
 - Method: GET
@@ -106,7 +113,12 @@ Response:
 }
 ```
 
-### Get Level Details
+<hr/>
+
+### [GET] LEVEL DETAIL
+#### Get gameplay from selected level
+
+<br/>
 
 Request:
 - Method: GET
@@ -149,7 +161,13 @@ Response:
 }
 ```
 
-### Showing badge that user have achieved
+<hr/>
+
+### [GET] Badge
+#### Showing badge that user have been achieved
+
+<br/>
+
 Request:
 - Method: GET
 - Endpoint: `/badge/`
@@ -177,3 +195,5 @@ Response:
     "status": "string"
 }
 ```
+
+<hr/>
