@@ -1,8 +1,0 @@
-com/dicoding/picodiploma/thumbs/BuildConfig.java
- com.dicoding.picodiploma.thumbs.BuildConfig
-com/dicoding/picodiploma/thumbs/databinding/ActivitySplashScreenBinding.java
- com.dicoding.picodiploma.thumbs.databinding.ActivitySplashScreenBinding
-com/dicoding/picodiploma/thumbs/databinding/ActivityMainBinding.java
- com.dicoding.picodiploma.thumbs.databinding.ActivityMainBinding
-com/dicoding/picodiploma/thumbs/databinding/ItemWaBinding.java
- com.dicoding.picodiploma.thumbs.databinding.ItemWaBinding
