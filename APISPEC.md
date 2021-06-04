@@ -10,6 +10,7 @@ Request:
 - Body:
 ```json
 {
+    "id": "integer",
     "email": "string",
     "password": "string"
 }

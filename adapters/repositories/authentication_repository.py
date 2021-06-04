@@ -25,6 +25,7 @@ class AuthenticationRepository:
             'message': 'Successfully logged in.',
             'auth_token': auth_token,
             'data': {
+              'id': user.id,
               'email': user.email,
               'username': user.username
             },

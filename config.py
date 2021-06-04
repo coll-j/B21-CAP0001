@@ -1,8 +1,8 @@
 
-POSTGRES_URL = '127.0.0.1:5432'
-POSTGRES_USER = 'kuuhaku86'
-POSTGRES_PASSWORD = 'yohan123'
-POSTGRES_DB = 'thumbs'
+POSTGRES_URL = '127.0.0.1:5433'
+POSTGRES_USER = 'postgres'
+POSTGRES_PASSWORD = 'mostsecurepassword'
+POSTGRES_DB = 'bluesclues'
 
 
 class Config:
