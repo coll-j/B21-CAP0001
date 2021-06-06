@@ -5,6 +5,10 @@ import android.os.Bundle
 import android.view.Menu
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.picodiploma.thumbs.databinding.ActivityMainBinding
+import com.dicoding.picodiploma.thumbs.networking.controller.AuthenticationController
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +23,9 @@ class MainActivity : AppCompatActivity() {
         binding.rvWa.setHasFixedSize(true)
         list.addAll(getListUserWa())
         showRecyclerList()
+        GlobalScope.launch (Dispatchers.Main) {
+            AuthenticationController.login("", "")
+        }
     }
 
     fun getListUserWa(): ArrayList<userWa> {
