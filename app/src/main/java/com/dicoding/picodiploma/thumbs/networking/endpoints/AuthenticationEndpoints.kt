@@ -10,4 +10,10 @@ import retrofit2.http.*
 interface AuthenticationEndpoints {
     @POST("/auth/login")
     suspend fun login(@Body requestBody: RequestBody): Response<ResponseBody>
+
+    @POST("/auth/register")
+    suspend fun register(@Body requestBody: RequestBody): Response<ResponseBody>
+
+    @POST("/auth/logout")
+    suspend fun logout(@Body requestBody: RequestBody): Response<ResponseBody>
 }

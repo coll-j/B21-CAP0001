@@ -4,52 +4,67 @@ import android.util.Log
 import com.dicoding.picodiploma.thumbs.networking.ServiceBuilder
 import com.dicoding.picodiploma.thumbs.networking.endpoints.AuthenticationEndpoints
 import com.dicoding.picodiploma.thumbs.networking.model.Response
-import com.dicoding.picodiploma.thumbs.networking.model.User
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
-import java.lang.Exception
 
 object AuthenticationRepository {
     val request = ServiceBuilder.buildService(AuthenticationEndpoints::class.java)
 
-    suspend fun login(username: String, password: String){
-        val jsonObject = JSONObject()
-        jsonObject.put("username", username)
-        jsonObject.put("password", password)
+    suspend fun login(username: String, password: String): Response? {
 
-        val jsonObjectString = jsonObject.toString()
-        val requestBody = jsonObjectString.toRequestBody("application/json".toMediaTypeOrNull())
+        val field = hashMapOf("username" to username, "password" to password)
+        val response = request.login(requestMaker(field))
 
-        val response = request.login(requestBody)
-
-        withContext(Dispatchers.Main) {
-            if (response.isSuccessful){
-                val gson = GsonBuilder().setPrettyPrinting().create()
-                val prettyJson = gson.toJson(
-                    JsonParser.parseString(
-                        response.body()?.string()
-                    )
+        return if (response.isSuccessful) {
+            val gson = GsonBuilder().setPrettyPrinting().create()
+            val prettyJson = gson.toJson(
+                JsonParser.parseString(
+                    response.body()?.string()
                 )
-                val newGson: Gson = Gson()
-//                    Convert the response to response model
-                val result = newGson.fromJson(prettyJson, Response::class.java)
-//                    Get the data (convert to specific data class)
-                val data = newGson.fromJson(result.data.toString(), User::class.java)
-//                    Log.d("Result", data.toString())
-//                    Log.d("Pretty Printed JSON :", prettyJson)
-
-            } else {
-                Log.e("RETROFIT_ERROR", response.code().toString())
-//                returnData("RETROFIT_ERROR ${response.code()}")
-            }
+            )
+            val newGson: Gson = Gson()
+            newGson.fromJson(prettyJson, Response::class.java)
+        } else {
+            Log.e("RETROFIT_ERROR", response.code().toString())
+            null
         }
     }
+
+    suspend fun register(username: String, password: String, email: String): Response? {
+
+        val field = hashMapOf("username" to username, "password" to password, "email" to email)
+        val response = request.register(requestMaker(field))
+
+        return if (response.isSuccessful) {
+            val gson = GsonBuilder().setPrettyPrinting().create()
+            val prettyJson = gson.toJson(
+                JsonParser.parseString(
+                    response.body()?.string()
+                )
+            )
+            val newGson: Gson = Gson()
+            newGson.fromJson(prettyJson, Response::class.java)
+        } else {
+            Log.e("RETROFIT_ERROR", response.code().toString())
+            null
+        }
+    }
+
+    private fun requestMaker(map: HashMap<String, String>): RequestBody {
+        val jsonObject = JSONObject()
+
+        for ((key, value) in map) {
+            jsonObject.put(key, value)
+        }
+
+        val jsonObjectString = jsonObject.toString()
+
+        return jsonObjectString.toRequestBody("application/json".toMediaTypeOrNull())
+    }
+
 }
