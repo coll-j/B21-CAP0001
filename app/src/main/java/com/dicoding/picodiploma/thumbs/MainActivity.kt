@@ -24,10 +24,15 @@ class MainActivity : AppCompatActivity() {
         list.addAll(getListUserWa())
         showRecyclerList()
 
+//        example calling viewmodel of authentication
         loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         loginViewModel.login("", "")
         loginViewModel.user.observe(this, { user ->
-            Log.d("observe", user.toString())
+            if(user !== null){
+                Log.d("observe", user.toString())
+            }else{
+                Log.d("observe", "null")
+            }
         })
     }
 

@@ -55,6 +55,10 @@ object AuthenticationRepository {
         }
     }
 
+    suspend fun logout(){
+
+    }
+
     private fun requestMaker(map: HashMap<String, String>): RequestBody {
         val jsonObject = JSONObject()
 
