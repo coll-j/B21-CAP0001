@@ -1,4 +1,3 @@
-
 package com.dicoding.picodiploma.thumbs.whutsapp
 
 import android.os.Parcelable
