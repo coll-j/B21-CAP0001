@@ -1,13 +1,14 @@
 <resources>
     <string name="app_name">Thumbs</string>
 
+    <string name="whutsApp">WhutsApp</string>
     <string name="userWa_name">WA Name</string>
     <string name="userWa_detail">Unseen Message</string>
     <string name="userWa_time">Time</string>
 
     <string name="list">List</string>
 
-   <!--data Wa -->
+    <!--data Wa -->
     <string-array name="data_name">
         <item>My Lovely Family</item>
         <item>Dr. Syubban</item>

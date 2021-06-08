@@ -1,4 +1,4 @@
-package com.dicoding.picodiploma.thumbs
+package com.dicoding.picodiploma.thumbs.whutsapp
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
