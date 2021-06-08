@@ -1,13 +1,21 @@
 <resources>
     <string name="app_name">Thumbs</string>
 
+    <string name="whutsApp">WhutsApp</string>
     <string name="userWa_name">WA Name</string>
     <string name="userWa_detail">Unseen Message</string>
     <string name="userWa_time">Time</string>
+    <string name="info">Tap Here for More Info</string>
 
     <string name="list">List</string>
+    <string name="news">
+        [ Berita X ]
+        Kucing Suka Makan Rumput.
+        Ternyata rumput membuat kucing anti covid.
+    </string>
+    <string name="lorem">Lorem Ipsum....</string>
 
-   <!--data Wa -->
+    <!--data Wa -->
     <string-array name="data_name">
         <item>My Lovely Family</item>
         <item>Dr. Syubban</item>
